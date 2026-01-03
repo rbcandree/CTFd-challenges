@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>DisWeather</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+      .center { text-align: center; margin: 30px 0; }
+      .download-section { text-align: center; margin: 20px; }
+      .json-display { margin: 20px auto; max-width: 90%; border: 1px solid #ccc; padding: 10px; background: #f9f9f9; }
+      iframe { width: 100%; height: 500px; border: none; }
+    </style>
+  </head>
+  <body>
+    <div class="center">
+      <h1>Can you figure out what the weather is like in the Grand Banks today?</h1>
+    </div>
+    <div class="download-section">
+      <p><a href="/weather_data.json" download>Download the .json file</a></p>
+    </div>
+    <div class="json-display">
+      <h2>JSON File Content</h2>
+      <!-- Display the file content using an inline frame -->
+      <iframe src="/weather_data.json"></iframe>
+    </div>
+  </body>
+</html>

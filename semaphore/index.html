@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Semaphore CTF</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 40px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .styled-text {
+            text-align: center;
+            font-style: italic;
+            font-weight: bold;
+            font-size: 1.25em;
+        }
+        .text-block {
+            width: 75%;
+            margin: 0 auto 20px auto;
+            text-align: justify;
+        }
+        .center-image {
+            display: block;
+            margin: 40px auto 0 auto;
+        }
+        .image-50 {
+            width: 50%;
+            height: auto;
+        }
+        .image-75 {
+            max-width: 75%;
+            height: auto;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Have you heard of Semaphore?</h1>
+
+        <div class="text-block">
+            <p>
+                The semaphore system is an ingenious method of visual communication that predates electrical telegraphy. Its early incarnations involved towers or handheld flags with movable arms or components arranged in standardized positions, each representing a specific letter or number. The system allowed operators to relay messages over long distances simply by sight, a technique that proved invaluable in an era when speed was of the essence and technological options were limited.
+                <a href="https://en.wikipedia.org/wiki/Semaphore" target="_blank">(Text adapted from Wikipedia — see Semaphore)</a>
+            </p>
+        </div>
+
+        <img src="semaphore1.jpg" alt="Semaphore1" class="center-image image-50">
+        <a href="https://www.britannica.com/technology/semaphore" target="_blank">(Image source: Encyclopædia Britannica — Semaphore atop a tower)</a>
+
+        <div class="text-block">
+            <p>
+                The key influence of semaphore lies in its method of converting physical positions into discrete symbols. This concept is fundamental to modern communication systems, where information is often encoded into binary or multi-level digital signals before being transmitted over networks. By demonstrating that complex messages could be broken down into simple, clearly defined units, semaphore indirectly paved the way for contemporary error-correction protocols and data transmission methods. These principles are echoed in modern coding theory, where the transformation of physical states into digital data enables reliable and efficient communication.
+            </p>
+
+            <p>
+                Moreover, the legacy of semaphore continues in specialized fields. For instance, maritime and railway communication systems have retained aspects of these early signaling methods. The modern International Maritime Signal Flag Code, used by ships to communicate essential messages visually, is a direct descendant of the semaphore traditions that prioritized clear, unambiguous signaling. This adaptation underscores semaphore's enduring relevance, as the system's emphasis on standardized symbols and redundancy remains vital in ensuring communication integrity in critical scenarios.
+                <a href="https://en.wikipedia.org/wiki/Flag_semaphore" target="_blank">(Text adapted from Wikipedia — see Flag semaphore)</a>
+            </p>
+
+            <p>
+                Beyond its historical significance, exploring semaphore encourages an appreciation for how early theories of signal transmission have evolved. Its basic idea of encoding and decoding information has deeply influenced not only the advent of the electrical telegraph but also modern digital communications, where similar challenges - such as noise, signal loss, and error correction - still need to be addressed.
+            </p>
+
+            <p>
+                While many sources credit the genesis of optical telegraphy to French innovators like Claude Chappe in the late 18th century, lesser-known adaptations also emerged across Europe. In the mid-1800s, Finnish engineers - facing the challenges of vast, rugged landscapes and long, snowy winters - devised their own version of the semaphore system. The Finnish adaptation of the semaphore featured larger, more robust signaling devices, optimized for the long sightlines required in railway communication and maritime navigation. These signals ensured that vital instructions, warnings, and updates could be transmitted effectively even in adverse conditions.
+            </p>
+
+            <p>
+                Although eventually superseded by electrical communications, the legacy of the semaphore system endures as a testament to human ingenuity. Finland's unique contributions highlight how local challenges can drive innovative adaptations of broader technological concepts. This creative spirit not only bridged long distances in the past but also laid an early foundation for the sophisticated communication networks we rely on today. For those interested in delving deeper into the history of communication in Finland, the National Signals Museum (Viestimuseo) in Riihimäki offers exhibits on various communication methods, including early signaling devices from the 1800s.
+                <a href="https://www.viestikiltojenliitto.fi/viestimuseo/_eng/museum.html" target="_blank">(see The National Signals Museum)</a>
+            </p>
+        </div>
+
+        <div class="styled-text">
+            <p>
+                Below is displayed the semaphore alphabet. Let's see if you can solve this <span style="color: darkslateblue; font-weight: bold;">local</span> challenge.
+            </p>
+        </div>
+
+        <img src="semaphore2.jpg" alt="Semaphore2" class="center-image image-75">
+        
+        <br><br>
+        <div id="epoch-columns" style="display: flex; justify-content: center; gap: 60px; font-family: sans-serif; font-size: 1.1em; padding-top: 30px;"></div>
+        
+        <script>
+            // local Helsinki time on 2025-10-31 to Epoch
+            const rawTimes = [
+                "12:30", "11:40", "09:20", "08:30", "{",
+                "09:20", "08:20", "08:30", "09:00", "10:30",
+                "09:35", "08:30", "10:00", "06:30", "09:55",
+                "06:15", "06:30", "10:00", "09:35", "06:10",
+                "06:30", "12:10", "08:30", "09:35", "12:15", "12:15",
+                "12:10", "09:20", "}"
+            ];
+
+            function toEpochHelsinki(timeStr) {
+                if (timeStr === '{' || timeStr === '}') return timeStr;
+                const [hours, minutes] = timeStr.split(":").map(Number);
+                const helsinkiOffset = 2 * 60; // UTC+2 for October (no DST)
+                const date = new Date(Date.UTC(2025, 9, 31, hours - helsinkiOffset / 60, minutes));
+                return Math.floor(date.getTime() / 1000);
+            }
+
+            function toBase64(str) {
+                return btoa(str.toString());
+            }
+
+            const encodedTimePairs = [];
+            let displayIndex = 1;
+            rawTimes.forEach(timeStr => {
+                const display = toEpochHelsinki(timeStr);
+                const hiddenTime = (timeStr === '{' || timeStr === '}') ? timeStr : toBase64(timeStr);
+                if (timeStr === "12:10") {
+                    encodedTimePairs.push({ index: null, display, hiddenTime });
+                } else {
+                    encodedTimePairs.push({ index: displayIndex++, display, hiddenTime });
+                }
+            });
+
+            // three columns
+            const colSize = Math.ceil(encodedTimePairs.length / 3);
+            const columns = [[], [], []];
+            encodedTimePairs.forEach((entry, idx) => {
+                const colIndex = Math.floor(idx / colSize);
+                columns[colIndex].push(entry);
+            });
+
+            // column layout
+            const container = document.getElementById("epoch-columns");
+            columns.forEach(col => {
+                const div = document.createElement("div");
+                div.className = "epoch-column";
+
+                col.forEach(({ index, display, hiddenTime }) => {
+                    const line = document.createElement("div");
+
+                    if (index === null) {
+                        line.innerHTML = `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${display}`;
+                    } else {
+                        line.textContent = `${index}. ${display}`;
+                    }
+
+                    line.setAttribute("data-b64-time", hiddenTime);
+                    div.appendChild(line);
+                });
+
+                container.appendChild(div);
+            });
+        </script>
+</body>
+</html>
