@@ -1,0 +1,24 @@
+{
+  "logins": [
+    {
+      "id": 1,
+      "hostname": "http://localhost",
+      "username": "admin",
+      "password": "DISA{Perhaps_your_Edge_does_better}",
+      "formSubmitURL": "http://localhost",
+      "httpRealm": null,
+      "usernameField": "username",
+      "passwordField": "password",
+      "encryptedUsername": "",
+      "encryptedPassword": "",
+      "guid": "{1}",
+      "encType": 1,
+      "timeCreated": 1600000000000,
+      "timeLastUsed": 1600000000000,
+      "timePasswordChanged": 1600000000000,
+      "timesUsed": 1
+    }
+  ],
+  "nextId": 2,
+  "version": 1
+}

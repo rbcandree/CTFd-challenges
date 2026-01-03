@@ -1,0 +1,10 @@
+[begin] (Fluxbox)
+  [submenu] (Applications)
+    [submenu] (Network)
+      [submenu] (Web)
+        [exec] (Edge Browser) {/usr/local/bin/edge-wrapper.sh}
+      [end]
+    [end]
+  [end]
+  [exit] (Exit)
+[end]

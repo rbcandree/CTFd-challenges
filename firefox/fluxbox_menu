@@ -1,0 +1,10 @@
+[begin] (Fluxbox)
+  [submenu] (Applications)
+    [submenu] (Network)
+      [submenu] (Web Browser)
+        [exec] (Firefox) {firefox --no-remote --profile /root/.mozilla/firefox/pinkman}
+      [end]
+    [end]
+  [end]
+  [exit] (Exit)
+[end]
