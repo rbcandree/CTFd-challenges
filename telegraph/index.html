@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Telegraph CTF</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 40px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .styled-text {
+            text-align: center;
+            font-style: italic;
+            font-weight: bold;
+            font-size: 1.25em;
+        }
+        .text-block {
+            width: 75%;
+            margin: 0 auto 20px auto;
+            text-align: justify;
+        }
+        .center-image {
+            display: block;
+            margin: 40px auto 0 auto;
+        }
+        .image-50 {
+            width: 50%;
+            height: auto;
+        }
+        a {
+            color: blue;
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            font-weight: normal;
+        }
+        table {
+            margin: 0 auto;
+        }
+        .telegram-grid {
+            display: grid;
+            grid-template-columns: repeat(2, auto);
+            justify-content: center;
+            gap: 4px 60px;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 18px;
+            font-weight: normal;
+            text-align: left;
+            white-space: pre;
+        }
+        .info-title {
+            text-align: center;
+            font-style: italic;
+            font-weight: bold;
+            font-size: 1.25em;
+            margin-top: 20px;
+        }
+        .sources {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 10px;
+        font-size: 0.85em;
+        }
+        .sources a {
+        text-decoration: none;
+        color: blue;
+        }
+        .sources a:hover {
+        text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>What about Edelcrantz Telegraph?</h1>
+
+        <div class="text-block">
+            <p>
+                When Claude Chappe's semaphore telegraph made waves in France, it caught the attention of Swedish inventor Abraham Niclas Edelcrantz. Curious to try it out himself, Edelcrantz built Sweden's first optical telegraph in 1794. His test line had three stations stretching about 12 kilometers — from the royal palace in Stockholm, through Traneberg, all the way to Drottningholm Castle.
+                <a href="https://en.wikipedia.org/wiki/Optical_telegraph#Development_in_Sweden" target="_blank">(Text adapted from Wikipedia — see Optical telegraph. Development in Sweden)</a>
+            </p>
+        </div>
+
+        <img src="telegraph.jpg" alt="Telegraph" class="center-image image-50">
+        <a href="https://en.wikipedia.org/wiki/Optical_telegraph#Sweden" target="_blank">(Image source: Wikipedia — A replica of an optical telegraph in Stockholm, Sweden)</a>
+
+        <div class="text-block">
+            <p>
+                The very first trial happened on November 1st, when Edelcrantz sent a poem to King Gustav IV Adolf for his 14th birthday. The king was impressed — so much so that a week later he invited Edelcrantz into his Council of Advisers to discuss rolling out a full telegraph system across Sweden, Denmark, and Finland.
+            </p>
+
+            <p>
+                Edelcrantz later wrote about his invention in a book titled Afhandling om telegrapher och försök til en ny inrättning däraf, which is even referenced in Gerard Holzmann's The Early History of Data Networks.
+                <a href="https://archive.org/details/earlyhistoryofda0000holz" target="_blank">(Source: Internet Archive — The Early History of Data Networks by Gerard J. Holzmann)</a>
+            </p>
+
+            <p>
+                So how did it work? Each flap on the telegraph represented a 3-bit binary number. A tenth flap showed the letter "A" before each code, making a total of 1,024 possible signals. With the help of a codebook, these signals could be translated into letters, numbers, syllables, or even full phrases.
+            </p>
+
+            <p>
+                Surprisingly, the system was powerful — with the right flap size, signals could reach up to 32 kilometers away. And it wasn't just for daytime use: Edelcrantz designed it to work at night too, by placing lamps behind the flaps. Nighttime codes were basically the opposite of the daytime ones, so messages could still get through after dark.
+                <a href="https://en.wikipedia.org/wiki/Optical_telegraph#Edelcrantz_system_technical_operation" target="_blank">(Text adapted from Wikipedia — see Optical telegraph. Edelcrantz system technical operation)</a>
+            </p>
+        </div>
+        <div class="text-block">
+        <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; text-align: center;">
+            <thead>
+            <tr>
+                <th>Day</th>
+                <th>Symbol</th>
+                <th>Night</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>003</td>
+                <td>A</td>
+                <td>774</td>
+            </tr>
+            <tr>
+                <td>325</td>
+                <td>L</td>
+                <td>452</td>
+            </tr>
+            </tbody>
+            <tr>
+                <td>070</td>
+                <td>dot</td>
+                <td>707</td>
+            </tr>
+            </tbody>
+            <tr>
+                <td>777</td>
+                <td>space</td>
+                <td>000</td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <img src="codebook-edelcrantz-1795-scan.png" alt="Codebook1795" class="center-image image-50">
+        <a target="_blank">(Abraham Niclas Edelcrantz, Telegraphifk Chiffre-Tabell (1795), printed in Stockholm by Johan Pehr Lindh. Scan provided by Prof. Gerard J. Holzmann)</a>
+
+        <div class="styled-text">
+        <p>
+            Imagine that the year is <span style="color: darkslateblue; font-weight: bold;">1809</span>, and while shadows are short, you receive the following telegram:
+        </p>
+
+        <div class="telegram-grid">
+            <div>1. 077</div>
+            <div>9.  514</div>
+            <div>2. 546</div>
+            <div>10. 027</div>
+            <div>{</div>
+            <div>11. 013</div>
+            <div>3. A132</div>
+            <div>12. 777</div>
+            <div>4. 777</div>
+            <div>13. 475</div>
+            <div>5. 732</div>
+            <div>14. 777</div>
+            <div>6. 777</div>
+            <div>15. A743</div>
+            <div>7. A431</div>
+            <div>}</div>
+            <div>8. 777</div>
+        </div>
+
+        <div class="info-title">Useful information</div>
+        <div class="sources">
+            <a href="Edelcrantz-Chifferbok-1808.pdf" download>
+            📄 Abraham Niclas Edelcrantz (1808) <em>Telegrafiste Chiffer Tabeller</em>
+            </a>
+            <a href="https://trepo.tuni.fi/handle/10024/102557" target="_blank">
+            🔗 Silvia Rubio Hernández (2017) <em>Vapriikki Case</em>
+            </a>
+        </div>
+</body>
+</html>
