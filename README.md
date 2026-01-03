@@ -6,7 +6,7 @@ To build a challenge, open a Terminal, navigate to its directory, and run:
 - docker build -t <image_name> .
 
 After building, you can launch the challenge with:
-- docker run -d --name abc -p 9000:22 -p 9001:80 abc
+- docker run -d --name container_name -p 9000:22 -p 9001:80 image_name
 
 For additional information, see the description.pdf file.
 
